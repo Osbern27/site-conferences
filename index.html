@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conférences — Laurent Ridel · Décoder les églises et les châteaux</title>
+<meta name="description" content="27 conférences sur le patrimoine médiéval par Laurent Ridel, historien et vulgarisateur.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{font-family:'Jost',sans-serif;color:#444;background:#fff;-webkit-font-smoothing:antialiased;}
+button{font-family:'Jost',sans-serif;}
+::selection{background:#26abd3;color:#fff;}
+
+.page{display:none;}
+.page.active{display:block;}
+
+.grain{
+  position:fixed;inset:0;z-index:9000;pointer-events:none;
+  opacity:.06;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:16px 56px;
+  background:rgba(255,255,255,.94);backdrop-filter:blur(8px);
+  border-bottom:1px solid #e9f0f3;
+}
+.nav-brand{display:flex;align-items:center;gap:14px;cursor:pointer;}
+.nav-logo{
+  width:46px;height:46px;border-radius:50%;background:#26abd3;
+  display:flex;align-items:center;justify-content:center;flex:none;font-size:22px;
+}
+.nav-title{font-family:'Playfair Display',serif;font-weight:700;font-size:19px;color:#187894;line-height:1.05;}
+.nav-title span{color:#26abd3;}
+.nav-sub{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#9bb3bd;margin-top:2px;}
+.nav-links{display:flex;align-items:center;gap:30px;}
+.nav-link{font-size:15px;font-weight:500;cursor:pointer;color:#5a6e76;transition:color .2s;background:none;border:none;padding:0;}
+.nav-link:hover,.nav-link.active{color:#26abd3;}
+.btn-invite{border:none;cursor:pointer;font-size:14px;font-weight:600;color:#fff;background:#ff7a00;padding:11px 22px;border-radius:6px;transition:background .2s;}
+.btn-invite:hover{background:#e06d00;}
+
+/* HERO */
+.hero{position:relative;background:#26abd3;color:#fff;overflow:hidden;padding:84px 56px 0;}
+.hero-inner{max-width:760px;position:relative;z-index:3;}
+.hero-badge{display:inline-block;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#cdeefb;border:1px solid rgba(255,255,255,.45);border-radius:40px;padding:7px 16px;margin-bottom:26px;}
+.hero h1{font-family:'Playfair Display',serif;font-weight:800;font-size:60px;line-height:1.08;margin:0 0 22px;}
+.hero-lead{font-size:21px;line-height:1.6;color:#eaf8fe;max-width:620px;margin:0 0 34px;font-weight:300;}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:54px;}
+.btn-hp{border:none;cursor:pointer;font-size:16px;font-weight:600;color:#fff;background:#187894;padding:15px 30px;border-radius:6px;transition:background .2s;}
+.btn-hp:hover{background:#0f6379;}
+.btn-ho{cursor:pointer;font-size:16px;font-weight:600;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.6);padding:15px 30px;border-radius:6px;transition:background .2s;}
+.btn-ho:hover{background:rgba(255,255,255,.16);}
+
+/* STRIP */
+.strip{background:#187894;color:#fff;padding:30px 56px;display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;align-items:center;}
+.strip-stat{display:flex;align-items:baseline;gap:12px;}
+.strip-num{font-family:'Playfair Display',serif;font-weight:700;font-size:40px;color:#7fd3ec;}
+.strip-label{font-size:15px;max-width:150px;line-height:1.3;color:#dff3fa;}
+
+/* ORNEMENT */
+.orn{display:flex;align-items:center;gap:14px;}
+.orn-l{width:46px;height:1px;background:#d8c3a6;}
+.orn-s{font-size:16px;color:#b35500;}
+
+/* VEDETTES */
+.featured{padding:78px 56px 30px;}
+.sec-hd{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:46px;text-align:center;}
+.sec-hd h2{font-family:'Playfair Display',serif;font-weight:700;font-size:34px;margin:0;color:#187894;text-transform:uppercase;letter-spacing:3px;}
+.sec-hd p{font-size:17px;color:#6b7d84;max-width:560px;margin:6px 0 0;font-weight:300;}
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;}
+
+.card{display:flex;flex-direction:column;background:#fff;border:1px solid #e7eef1;border-radius:8px;overflow:hidden;box-shadow:0 6px 22px rgba(24,120,148,.06);transition:transform .18s,box-shadow .18s;}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(24,120,148,.12);}
+.card-img{position:relative;height:150px;background:#eef2f4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border-bottom:1px solid #e7eef1;}
+.card-img-cap{font-size:11px;color:#9fb1b8;font-style:italic;}
+.card-badge{position:absolute;top:10px;left:10px;font-size:11px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:#fff;padding:4px 9px;border-radius:4px;}
+.card-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1;}
+.card-body h3{font-family:'Playfair Display',serif;font-weight:600;font-size:18px;line-height:1.25;margin:0 0 8px;color:#2c3c42;}
+.card-body p{font-size:13.5px;line-height:1.5;color:#6b7d84;margin:0 0 16px;flex:1;}
+.card-ft{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid #eef2f4;}
+
+/* GAUGE */
+.gauge{display:flex;gap:5px;align-items:center;}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+.lv{font-size:12px;color:#8a9aa1;}
+
+/* À PROPOS */
+.about{background:#e9f7fb;padding:74px 56px;margin-top:40px;}
+.about-grid{display:grid;grid-template-columns:330px 1fr;gap:54px;align-items:center;max-width:1040px;margin:0 auto;}
+.avatar{aspect-ratio:1;border-radius:50%;background:#dfeef3;border:1px solid #cbe2ea;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
+.avatar-cap{font-size:12px;color:#8aa9b5;font-style:italic;}
+.about-tag{display:flex;align-items:center;gap:12px;margin-bottom:14px;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:#a4734a;}
+.about-content h2{font-family:'Playfair Display',serif;font-weight:700;font-size:36px;margin:0 0 18px;color:#187894;}
+.about-content p{font-size:17px;line-height:1.65;color:#516068;margin:0 0 16px;font-weight:300;}
+.hi-list{display:flex;gap:26px;flex-wrap:wrap;}
+.hi{display:flex;align-items:center;gap:9px;font-size:14px;color:#516068;}
+.hi-star{color:#26abd3;font-size:18px;}
+
+/* CTA */
+.cta{background:#26abd3;color:#fff;padding:64px 56px;text-align:center;}
+.cta h2{font-family:'Playfair Display',serif;font-weight:700;font-size:38px;margin:0 0 14px;}
+.cta p{font-size:18px;color:#e8f8fe;max-width:560px;margin:0 auto 30px;font-weight:300;}
+.btn-cta{border:none;cursor:pointer;font-size:16px;font-weight:600;color:#fff;background:#ff7a00;padding:15px 34px;border-radius:6px;transition:background .2s;}
+.btn-cta:hover{background:#e06d00;}
+.btn-outline{cursor:pointer;font-size:15px;font-weight:600;color:#187894;background:transparent;border:1.5px solid #187894;padding:13px 30px;border-radius:6px;transition:all .2s;}
+.btn-outline:hover{background:#187894;color:#fff;}
+
+/* PAGE CONFÉRENCES */
+.conf-hd{background:#e9f7fb;padding:64px 56px 54px;text-align:center;}
+.conf-hd h1{font-family:'Playfair Display',serif;font-weight:700;font-size:46px;margin:0 0 16px;color:#187894;}
+.conf-hd p{font-size:18px;line-height:1.6;color:#5d7178;max-width:640px;margin:0 auto;font-weight:300;}
+
+/* FILTRES */
+.filter-bar{position:sticky;top:79px;z-index:120;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid #e9f0f3;padding:16px 56px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+.ftab{cursor:pointer;font-size:14px;font-weight:500;padding:9px 20px;border-radius:40px;transition:all .2s;background:#fff;color:#187894;border:1.5px solid #cfe4ec;}
+.ftab.active{background:#187894;color:#fff;border-color:#187894;}
+.ftab:hover:not(.active){background:#e9f7fb;}
+
+/* CATALOGUE */
+.catalogue{padding:54px 56px 30px;max-width:1180px;margin:0 auto;}
+.cat-sec{margin-bottom:58px;}
+.cat-hd{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding-bottom:14px;margin-bottom:28px;}
+.cat-hd h2{font-family:'Playfair Display',serif;font-weight:700;font-size:27px;margin:0;}
+.cat-hd p{font-size:15px;color:#7d8e94;margin:6px 0 0;font-weight:300;}
+.cat-badge{flex:none;font-size:13px;color:#fff;padding:5px 13px;border-radius:30px;white-space:nowrap;}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+
+.ccard{display:flex;flex-direction:column;background:#fff;border:1px solid #e7eef1;border-top-width:3px;border-top-style:solid;border-radius:7px;padding:20px 20px 18px;box-shadow:0 4px 16px rgba(24,120,148,.05);transition:transform .18s,box-shadow .18s;}
+.ccard:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(24,120,148,.12);}
+.ccard h3{font-family:'Playfair Display',serif;font-weight:600;font-size:18px;line-height:1.28;margin:0 0 9px;color:#2c3c42;}
+.ccard p{font-size:14px;line-height:1.55;color:#6b7d84;margin:0 0 18px;flex:1;font-weight:300;}
+.ccard-ft{display:flex;align-items:center;justify-content:space-between;padding-top:13px;border-top:1px solid #eef2f4;margin-top:auto;}
+
+/* LÉGENDE */
+.legend{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;background:#f6fafb;border:1px solid #e7eef1;border-radius:8px;padding:18px 24px;margin-top:6px;}
+.leg-lbl{font-size:13px;color:#7d8e94;letter-spacing:.5px;align-self:center;}
+.leg-it{display:flex;align-items:center;gap:8px;font-size:13px;color:#516068;}
+.leg-g{display:flex;gap:4px;}
+.leg-d{width:8px;height:8px;border-radius:50%;display:inline-block;}
+
+/* CTA CONFÉRENCES */
+.conf-cta{background:#187894;color:#fff;padding:54px 56px;text-align:center;margin-top:30px;}
+.conf-cta h2{font-family:'Playfair Display',serif;font-weight:700;font-size:32px;margin:0 0 12px;}
+.conf-cta p{font-size:17px;color:#dff3fa;max-width:540px;margin:0 auto 28px;font-weight:300;}
+
+/* FOOTER */
+footer{background:#13343f;color:#cfe1e8;padding:56px 56px 30px;}
+.ft-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;max-width:1100px;margin:0 auto;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.1);}
+.ft-brand{font-family:'Playfair Display',serif;font-weight:700;font-size:21px;color:#fff;margin-bottom:12px;}
+.ft-desc{font-size:14.5px;line-height:1.6;color:#9fb8c1;max-width:340px;font-weight:300;margin:0;}
+.ft-orn{display:flex;align-items:center;gap:12px;margin-top:18px;color:#7fb0c0;}
+.ft-orn-l{width:34px;height:1px;background:#3a5a66;}
+.ft-col-t{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#6f96a3;margin-bottom:14px;}
+.ft-contact{font-size:15px;line-height:2;color:#d4e6ed;}
+.ft-contact a{color:#d4e6ed;text-decoration:none;}
+.ft-contact a:hover{color:#26abd3;}
+.ft-mat{font-size:14.5px;line-height:1.75;color:#9fb8c1;font-weight:300;margin:0;}
+.ft-bot{max-width:1100px;margin:0 auto;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:#6f96a3;}
+.ft-bot a{color:#6f96a3;text-decoration:none;}
+.ft-bot a:hover{color:#26abd3;}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div style="position:relative;min-height:100vh;background:#fff;overflow-x:hidden;">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand" onclick="go('accueil')">
+    <div class="nav-logo">⛪</div>
+    <div>
+      <div class="nav-title">Décoder les églises<span> &amp; les châteaux</span></div>
+      <div class="nav-sub">Laurent Ridel · Conférences</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <button class="nav-link active" data-nav="accueil" onclick="go('accueil')">Accueil</button>
+    <button class="nav-link" data-nav="conferences" onclick="go('conferences')">Les conférences</button>
+    <button class="nav-link" onclick="go('accueil');setTimeout(toAbout,80)">Le conférencier</button>
+    <button class="nav-link" onclick="toContact()">Contact</button>
+    <button class="btn-invite" onclick="toContact()">Inviter Laurent</button>
+  </div>
+</nav>
+
+<!-- ══════════ ACCUEIL ══════════ -->
+<div id="page-accueil" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">Conférences sur le patrimoine médiéval</div>
+      <h1>Et si l'on apprenait à lire les pierres&nbsp;?</h1>
+      <p class="hero-lead">Depuis plus de vingt ans, j'aide tous les publics à décoder les églises et les châteaux&nbsp;: leur architecture, leurs images, leurs symboles et les femmes et les hommes qui les ont bâtis.</p>
+      <div class="hero-ctas">
+        <button class="btn-hp" onclick="go('conferences')">Découvrir les 27 conférences</button>
+        <button class="btn-ho" onclick="toContact()">M'inviter</button>
+      </div>
+    </div>
+    <!-- Skyline cathédrales SVG -->
+    <svg viewBox="0 0 1280 130" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;margin:0 -56px;width:calc(100% + 112px);" preserveAspectRatio="xMidYMax meet">
+      <g fill="#187894" opacity="0.8">
+        <rect x="560" y="12" width="160" height="118"/><polygon points="640,0 558,12 722,12"/>
+        <rect x="560" y="12" width="20" height="118"/><rect x="700" y="12" width="20" height="118"/>
+        <polygon points="570,0 560,12 580,12"/><polygon points="710,0 700,12 720,12"/>
+        <rect x="613" y="52" width="54" height="78"/>
+        <rect x="420" y="56" width="100" height="74"/><polygon points="470,38 420,56 520,56"/>
+        <rect x="448" y="38" width="12" height="20"/>
+        <rect x="760" y="50" width="110" height="80"/><polygon points="815,32 760,50 870,50"/>
+        <rect x="803" y="32" width="12" height="20"/>
+        <rect x="240" y="74" width="70" height="56"/><polygon points="275,56 240,74 310,74"/>
+        <rect x="263" y="56" width="10" height="20"/>
+        <rect x="980" y="68" width="75" height="62"/><polygon points="1017,50 980,68 1055,68"/>
+        <rect x="1007" y="50" width="10" height="20"/>
+        <rect x="120" y="88" width="46" height="42"/><polygon points="143,74 120,88 166,88"/>
+        <rect x="1152" y="82" width="48" height="48"/><polygon points="1176,68 1152,82 1200,82"/>
+      </g>
+    </svg>
+  </section>
+
+  <!-- STRIP -->
+  <section class="strip">
+    <div class="strip-stat"><span class="strip-num">27</span><span class="strip-label">conférences prêtes à être programmées</span></div>
+    <div class="strip-stat"><span class="strip-num">4</span><span class="strip-label">grands thèmes pour tous les curieux</span></div>
+    <div class="strip-stat"><span class="strip-num">20<span style="font-size:22px">+</span></span><span class="strip-label">années à transmettre le Moyen Âge</span></div>
+    <div class="strip-stat"><span class="strip-num">3</span><span class="strip-label">pays où je suis intervenu</span></div>
+  </section>
+
+  <!-- VEDETTES -->
+  <section class="featured">
+    <div class="sec-hd">
+      <div class="orn"><span class="orn-l"></span><span class="orn-s">⚜</span><span class="orn-l"></span></div>
+      <h2>Conférences vedettes</h2>
+      <p>Un aperçu, une dans chaque thème. Toutes mes interventions s'adaptent à votre public et à votre salle.</p>
+    </div>
+    <div class="feat-grid">
+
+      <div class="card">
+        <div class="card-img">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#b6c6cd" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M3 16l5-4 4 3 3-2 6 5"/></svg>
+          <span class="card-img-cap">Votre photo de monument</span>
+          <span class="card-badge" style="background:#26abd3">Images &amp; symboles</span>
+        </div>
+        <div class="card-body">
+          <h3>Les églises sont-elles une bible pour les illettrés&nbsp;?</h3>
+          <p>Au Moyen Âge, les images seraient destinées à faire l'éducation religieuse des illettrés. À travers de multiples photos, je nuance cette idée et révèle les véritables fonctions de l'image sacrée.</p>
+          <div class="card-ft">
+            <span class="lv">Public cultivé</span>
+            <div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#b6c6cd" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M3 16l5-4 4 3 3-2 6 5"/></svg>
+          <span class="card-img-cap">Votre photo de monument</span>
+          <span class="card-badge" style="background:#187894">Architecture</span>
+        </div>
+        <div class="card-body">
+          <h3>Construire une cathédrale</h3>
+          <p>Les cathédrales impressionnent par leur élévation. Comment leur construction a-t-elle été financée&nbsp;? Combien de temps pour les terminer&nbsp;? Quelles techniques utilisaient les bâtisseurs du Moyen Âge&nbsp;?</p>
+          <div class="card-ft">
+            <span class="lv">Grand public</span>
+            <div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span><span class="dot" style="background:#dde6ea"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#b6c6cd" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M3 16l5-4 4 3 3-2 6 5"/></svg>
+          <span class="card-img-cap">Votre photo de monument</span>
+          <span class="card-badge" style="background:#b35500">Immersion</span>
+        </div>
+        <div class="card-body">
+          <h3>Être moine ou moniale au Moyen Âge</h3>
+          <p>Se retirer au monastère implique le respect d'interdits sur la sexualité, l'argent, la nourriture et même la parole. L'emploi du temps est rigoureusement contraint. Il y a aussi quelques bons côtés.</p>
+          <div class="card-ft">
+            <span class="lv">Public cultivé</span>
+            <div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#b6c6cd" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M3 16l5-4 4 3 3-2 6 5"/></svg>
+          <span class="card-img-cap">Votre photo de monument</span>
+          <span class="card-badge" style="background:#803d00">Portraits</span>
+        </div>
+        <div class="card-body">
+          <h3>Les templiers&nbsp;: essor, chute et renouveau d'un ordre militaire</h3>
+          <p>Ces religieux avaient le droit de se battre et de verser le sang. D'où vient leur ascension&nbsp;? Pourquoi le roi Philippe le Bel et le pape se sont-ils alliés pour les faire chuter&nbsp;?</p>
+          <div class="card-ft">
+            <span class="lv">Grand public</span>
+            <div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span><span class="dot" style="background:#dde6ea"></span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <button class="btn-outline" onclick="go('conferences')">Voir les 27 conférences →</button>
+    </div>
+  </section>
+
+  <!-- À PROPOS -->
+  <section class="about" id="about-section">
+    <div class="about-grid">
+      <div>
+        <div class="avatar">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#9dbecb" stroke-width="1.3"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
+          <span class="avatar-cap">Portrait de Laurent Ridel</span>
+        </div>
+      </div>
+      <div class="about-content">
+        <div class="about-tag"><span style="font-size:15px;color:#b35500;">⚜</span><span>Le conférencier</span></div>
+        <h2>Laurent Ridel, historien médiéviste</h2>
+        <p>Diplômé en histoire (Bac&nbsp;+5) et vulgarisateur depuis plus de vingt ans, je suis l'auteur de trois livres dont <em>Notre-Dame de Lyre&nbsp;: histoire d'une abbaye disparue</em> (Presses Universitaires de Rouen et du Havre) et du projet «&nbsp;Décoder les églises et les châteaux&nbsp;», suivi par des dizaines de milliers de passionnés.</p>
+        <p>Ma différence&nbsp;: une narration vivante, de vraies interactions avec le public, et des diaporamas d'une grande qualité photographique. On ressort en ayant compris — et en ayant pris du plaisir.</p>
+        <div class="hi-list">
+          <div class="hi"><span class="hi-star">✦</span><span>3 livres publiés</span></div>
+          <div class="hi"><span class="hi-star">✦</span><span>France · Suisse · Luxembourg</span></div>
+          <div class="hi"><span class="hi-star">✦</span><span>~10&nbsp;000 abonnés par canal</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Envie de programmer une conférence&nbsp;?</h2>
+    <p>Association, université inter-âges, événement patrimonial&nbsp;: parlons de votre projet. Je réponds personnellement à chaque demande.</p>
+    <button class="btn-cta" onclick="toContact()">Me contacter</button>
+  </section>
+
+</div><!-- /accueil -->
+
+<!-- ══════════ CONFÉRENCES ══════════ -->
+<div id="page-conferences" class="page">
+
+  <section class="conf-hd">
+    <div class="orn" style="justify-content:center;margin-bottom:14px;"><span class="orn-l"></span><span class="orn-s">⚜</span><span class="orn-l"></span></div>
+    <h1>Le catalogue des conférences</h1>
+    <p>Vingt-sept conférences réparties en quatre thèmes. Chacune s'adapte à votre public et dure environ une heure à une heure trente, suivie d'un temps d'échange.</p>
+  </section>
+
+  <div class="filter-bar">
+    <button class="ftab active" data-f="all" onclick="filter('all')">Toutes</button>
+    <button class="ftab" data-f="sym" onclick="filter('sym')">Images &amp; symboles</button>
+    <button class="ftab" data-f="archi" onclick="filter('archi')">Architecture</button>
+    <button class="ftab" data-f="imm" onclick="filter('imm')">Immersion</button>
+    <button class="ftab" data-f="por" onclick="filter('por')">Portraits</button>
+  </div>
+
+  <div class="catalogue">
+
+    <!-- SYMBOLES -->
+    <div class="cat-sec" id="c-sym">
+      <div class="cat-hd" style="border-bottom:2px solid #26abd3;">
+        <div><h2 style="color:#26abd3;">Décoder les images et symboles des églises</h2><p>Lire la pierre, le verre et les figures sacrées</p></div>
+        <span class="cat-badge" style="background:#26abd3;">7 conférences</span>
+      </div>
+      <div class="cat-grid">
+        <div class="ccard" style="border-top-color:#26abd3;"><h3>Les églises sont-elles une bible pour les illettrés&nbsp;?</h3><p>Au Moyen Âge, les peintures, sculptures et vitraux seraient destinés à faire l'éducation religieuse d'un peuple incapable de lire. Je vais nuancer cette idée et expliquer les véritables fonctions de l'image sacrée.</p><div class="ccard-ft"><span class="lv">Public cultivé</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#26abd3;"><h3>35 sculptures énigmatiques dans les églises</h3><p>Chapiteaux, bas-reliefs, statues ornent les églises. Je vous propose un tour de France d'exemples énigmatiques&nbsp;: saints difficiles à identifier, scènes incongrues, symboles… Avec, à chaque fois, la clé d'interprétation.</p><div class="ccard-ft"><span class="lv">Public cultivé</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#26abd3;"><h3>Décoder les Vierges à l'enfant</h3><p>Presque toutes les églises, presque tous les musées d'art exposent une statue de la Vierge accompagnée de son enfant. Comment les sculpteurs et les peintres ont-ils renouvelé ce sujet récurrent&nbsp;?</p><div class="ccard-ft"><span class="lv">Public cultivé</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#26abd3;"><h3>Décoder les vitraux</h3><p>Le processus de fabrication d'un vitrail — ma méthode pour savoir apprécier un vitrail — les plus beaux vitraux de France et de Normandie, vus en détail — 10 vitraux français vraiment étranges.</p><div class="ccard-ft"><span class="lv">Grand public</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#26abd3;"><h3>Les églises sont des zoos de pierre</h3><p>Dans l'art roman et gothique, les animaux prolifèrent. Certains interviennent dans l'histoire sainte. D'autres sont figurés en vertu de leur symbolisme. Que signifient lions, singes, éléphants et créatures fantastiques&nbsp;?</p><div class="ccard-ft"><span class="lv">Grand public</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#26abd3;"><h3>Qu'est-ce que ça fait dans une église&nbsp;!?</h3><p>Dans ce tour de France, nous rencontrerons des objets énigmatiques, des sculptures bizarres et des vitraux surprenants. Le christianisme n'est pas toujours la clé pour les décoder.</p><div class="ccard-ft"><span class="lv">Public cultivé</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#26abd3;"><h3>Bleu, blanc, rouge… La symbolique des couleurs au Moyen Âge</h3><p>Si les moines bénédictins et le duc Philippe le Bon choisissent de se vêtir de noir, ce n'est pas pour la même raison. Regardez autrement les œuvres d'art et la société médiévales.</p><div class="ccard-ft"><span class="lv">Public cultivé</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+      </div>
+    </div>
+
+    <!-- ARCHITECTURE -->
+    <div class="cat-sec" id="c-archi">
+      <div class="cat-hd" style="border-bottom:2px solid #187894;">
+        <div><h2 style="color:#187894;">Architecture, construction et bâtisseurs</h2><p>Comprendre comment et pourquoi on bâtissait</p></div>
+        <span class="cat-badge" style="background:#187894;">8 conférences</span>
+      </div>
+      <div class="cat-grid">
+        <div class="ccard" style="border-top-color:#187894;"><h3>Viollet-le-Duc, génie ou fléau des monuments français&nbsp;?</h3><p>Eugène Viollet-le-Duc (1814–1879) est probablement le plus célèbre architecte du XIXe siècle — un architecte qui a plus rebâti que bâti. Alors que Notre-Dame vient de retrouver sa flèche, interrogeons ses méthodes controversées.</p><div class="ccard-ft"><span class="lv">Public cultivé</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#187894;"><h3>Construire une cathédrale</h3><p>Les cathédrales impressionnent par leur dimension et leur élévation. Comment leur construction a-t-elle été financée&nbsp;? Combien de temps pour les terminer&nbsp;? Quelles techniques utilisaient les bâtisseurs du Moyen Âge&nbsp;?</p><div class="ccard-ft"><span class="lv">Grand public</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#187894;"><h3>L'art roman n'existe pas&nbsp;!</h3><p>En France et à l'étranger, des historiens de l'art s'interrogent sur la pertinence de cette notion. Cette question est l'occasion de voyager dans la France romane et de revenir sur l'origine normande du terme.</p><div class="ccard-ft"><span class="lv">Public averti</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#187894;"><h3>Mythologie autour des bâtisseurs de cathédrale</h3><p>Que racontent les compagnons et les francs-maçons sur leur origine&nbsp;? Les architectes utilisaient-ils le nombre d'or&nbsp;? Les bâtisseurs du Moyen Âge étaient-ils si exceptionnels&nbsp;?</p><div class="ccard-ft"><span class="lv">Public averti</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#187894;"><h3>Histoire des cathédrales de France</h3><p>Incendies, guerres, chantiers gigantesques, rivalités entre évêques et villes… Derrière les cathédrales françaises se cachent des siècles d'aventures humaines.</p><div class="ccard-ft"><span class="lv">Public cultivé</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#187894;"><h3>Aux origines de l'architecture gothique</h3><p>Dans les années 1130, des architectes proposent une nouvelle façon de construire les églises. C'est le départ d'une révolution qui couvrira l'Europe occidentale. Pourquoi tout est parti de Paris et de ses environs&nbsp;?</p><div class="ccard-ft"><span class="lv">Public averti</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#187894;"><h3>Décoder les châteaux-forts</h3><p>À quand remontent les châteaux-forts&nbsp;? Comment les assiégeait-on et comment les défenseurs résistaient-ils&nbsp;? Comment y vivait-on&nbsp;? Confort, alimentation et hygiène.</p><div class="ccard-ft"><span class="lv">Grand public</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#187894;"><h3>Comment visiter une église sans rien rater&nbsp;?</h3><p>Beaucoup de visiteurs se contentent d'un simple tour sans savoir quoi regarder. Avec ma méthode des trois rondes, affûtez votre regard afin de sortir avec le sentiment d'avoir fait de belles découvertes.</p><div class="ccard-ft"><span class="lv">Public cultivé</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+      </div>
+    </div>
+
+    <!-- IMMERSION -->
+    <div class="cat-sec" id="c-imm">
+      <div class="cat-hd" style="border-bottom:2px solid #b35500;">
+        <div><h2 style="color:#b35500;">Immersion dans le Moyen Âge</h2><p>Vivre le quotidien d'une époque</p></div>
+        <span class="cat-badge" style="background:#b35500;">5 conférences</span>
+      </div>
+      <div class="cat-grid">
+        <div class="ccard" style="border-top-color:#b35500;"><h3>Agitation dans les monastères normands, du Moyen Âge à la Révolution</h3><p>On imagine les abbayes comme des enceintes paisibles. Or la vie des moines a souvent été bousculée par la guerre, des conflits internes et des relations houleuses avec les voisins. Je révèle des monastères beaucoup plus troublés qu'on ne le pense.</p><div class="ccard-ft"><span class="lv">Public cultivé</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#b35500;"><h3>Être moine ou moniale au Moyen Âge</h3><p>Se retirer au monastère implique le respect d'interdits sur la sexualité, l'argent, la nourriture et même la parole. L'emploi du temps est rigoureusement contraint. Alors, prêt à échanger votre vie trépidante contre celle des moines&nbsp;?</p><div class="ccard-ft"><span class="lv">Public cultivé</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#b35500;"><h3>Les reliques&nbsp;: des origines au Graal</h3><p>Au Moyen Âge, les reliques agitèrent le monde chrétien. «&nbsp;Elles firent jaillir les églises de terre, mirent les foules en mouvement, inspirèrent les artistes.&nbsp;» Toutes les histoires que je vous raconterai seront vraies.</p><div class="ccard-ft"><span class="lv">Grand public</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#b35500;"><h3>Histoire globale du monde</h3><p>Dans la lignée de <em>Sapiens</em> de Yuval Noah Harari, j'approche l'histoire mondiale à travers les grands phénomènes planétaires&nbsp;: la domestication des animaux, la peste, la montée irrésistible de l'Europe…</p><div class="ccard-ft"><span class="lv">Public cultivé</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#b35500;"><h3>Décoder la Tapisserie de Bayeux</h3><p>Ce document long de 68 mètres raconte en images tout un pan de l'histoire anglo-normande et offre des fenêtres sur la vie au Moyen Âge. Les scientifiques étudient aussi le matériau même de la tapisserie pour comprendre sa conception.</p><div class="ccard-ft"><span class="lv">Grand public</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+      </div>
+    </div>
+
+    <!-- PORTRAITS -->
+    <div class="cat-sec" id="c-por">
+      <div class="cat-hd" style="border-bottom:2px solid #803d00;">
+        <div><h2 style="color:#803d00;">Portraits</h2><p>Femmes et hommes qui ont fait le Moyen Âge</p></div>
+        <span class="cat-badge" style="background:#803d00;">7 conférences</span>
+      </div>
+      <div class="cat-grid">
+        <div class="ccard" style="border-top-color:#803d00;"><h3>Les artistes à la fin du Moyen Âge</h3><p>À partir du XIVe siècle, les cours princières et les villes s'arrachent les meilleurs sculpteurs, peintres, orfèvres… Quel était leur statut&nbsp;? Comment travaillaient-ils&nbsp;? Étaient-ils si libres dans leur création&nbsp;?</p><div class="ccard-ft"><span class="lv">Public cultivé</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#803d00;"><h3>Le paradoxe saint Bernard de Clairvaux</h3><p>Personnalité religieuse la plus célèbre du Moyen Âge, cet abbé développa l'ordre cistercien. Retiré à Clairvaux, il fut appelé à participer aux grandes affaires de son siècle&nbsp;: papes, rois et templiers.</p><div class="ccard-ft"><span class="lv">Public averti</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#803d00;"><h3>Les templiers&nbsp;: essor, chute et renouveau d'un ordre militaire</h3><p>Ces religieux avaient le droit de se battre et de verser le sang. D'où vient leur ascension&nbsp;? Pourquoi le roi Philippe le Bel et le pape se sont-ils alliés pour les faire chuter&nbsp;? Ces chevaliers semblent encore parmi nous.</p><div class="ccard-ft"><span class="lv">Grand public</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#803d00;"><h3>Rois et reines de France à travers l'art du portrait</h3><p>À partir de la fin du Moyen Âge, les rois de France se font tirer le portrait. Œuvres de propagande, ces tableaux adressent des messages qu'il faut savoir décoder et permettent de reparcourir l'histoire de France.</p><div class="ccard-ft"><span class="lv">Grand public</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#803d00;"><h3>Jeanne d'Arc, l'épopée incroyable</h3><p>En 18 mois, une très jeune femme renverse le cours de la guerre de Cent Ans. Son histoire est tellement incroyable qu'elle suscite des doutes. Retour sur les raisons de son succès et sur sa fin tragique.</p><div class="ccard-ft"><span class="lv">Grand public</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#803d00;"><h3>Louis XI, le dernier grand roi du Moyen Âge</h3><p>À ce roi est collée une image sinistre&nbsp;: celle d'un homme cruel. Certes Louis XI n'était ni un tendre, ni un modèle de chevalerie. Mais il mérite un portrait qui mette en valeur la complexité de son caractère.</p><div class="ccard-ft"><span class="lv">Public cultivé</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+        <div class="ccard" style="border-top-color:#803d00;"><h3>La face cachée de Guillaume le Conquérant</h3><p>Courageux, redoutable combattant, Guillaume l'était assurément. Si on met de côté ses qualités militaires, qui était le Conquérant&nbsp;? Découvrons les facettes, parfois peu flatteuses, du plus célèbre des ducs de Normandie.</p><div class="ccard-ft"><span class="lv">Grand public</span><div class="gauge"><span class="dot" style="background:#ff7a00"></span><span class="dot" style="background:#dde6ea"></span><span class="dot" style="background:#dde6ea"></span></div></div></div>
+      </div>
+    </div>
+
+    <!-- LÉGENDE -->
+    <div class="legend">
+      <span class="leg-lbl">Niveau de difficulté&nbsp;:</span>
+      <div class="leg-it"><span class="leg-g"><span class="leg-d" style="background:#ff7a00"></span><span class="leg-d" style="background:#dde6ea"></span><span class="leg-d" style="background:#dde6ea"></span></span>Grand public</div>
+      <div class="leg-it"><span class="leg-g"><span class="leg-d" style="background:#ff7a00"></span><span class="leg-d" style="background:#ff7a00"></span><span class="leg-d" style="background:#dde6ea"></span></span>Public cultivé</div>
+      <div class="leg-it"><span class="leg-g"><span class="leg-d" style="background:#ff7a00"></span><span class="leg-d" style="background:#ff7a00"></span><span class="leg-d" style="background:#ff7a00"></span></span>Public averti</div>
+    </div>
+
+  </div><!-- /catalogue -->
+
+  <section class="conf-cta">
+    <h2>Une conférence a retenu votre attention&nbsp;?</h2>
+    <p>Dites-moi laquelle et pour quel public&nbsp;: je vous réponds rapidement.</p>
+    <button class="btn-cta" onclick="toContact()">Me contacter</button>
+  </section>
+
+</div><!-- /conferences -->
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="ft-grid">
+    <div>
+      <div class="ft-brand">Décoder les églises &amp; les châteaux</div>
+      <p class="ft-desc">Conférences sur le patrimoine médiéval par Laurent Ridel, historien et vulgarisateur. En Normandie, en France et à l'international.</p>
+      <div class="ft-orn"><span class="ft-orn-l"></span><span>⚜</span><span class="ft-orn-l"></span></div>
+    </div>
+    <div>
+      <div class="ft-col-t">Me contacter</div>
+      <div class="ft-contact">
+        <a href="mailto:laurent-ridel@decoder-eglises-chateaux.fr">laurent-ridel@decoder-eglises-chateaux.fr</a><br>
+        <a href="tel:+33622220554">06&nbsp;22&nbsp;22&nbsp;05&nbsp;54</a><br>
+        72 avenue du 6 juin — 14100 Lisieux
+      </div>
+    </div>
+    <div>
+      <div class="ft-col-t">Pour vous recevoir</div>
+      <p class="ft-mat">Matériel requis&nbsp;: un vidéoprojecteur et un grand écran. Je m'occupe du reste — diaporama, narration et échange avec votre public.</p>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span>© 2026 Laurent Ridel · Décoder les églises et les châteaux</span>
+    <span><a href="https://decoder-eglises-chateaux.fr" target="_blank">Blog</a> · <a href="https://www.youtube.com/channel/UClBRoK2y5mP7NV42mY5Yyig" target="_blank">YouTube</a> · Newsletter</span>
+  </div>
+</footer>
+
+</div><!-- /wrapper -->
+
+<script>
+function go(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  document.querySelectorAll('[data-nav]').forEach(l => l.classList.toggle('active', l.dataset.nav === page));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function filter(f) {
+  document.querySelectorAll('.ftab').forEach(t => t.classList.toggle('active', t.dataset.f === f));
+  ['sym','archi','imm','por'].forEach(id => {
+    const el = document.getElementById('c-' + id);
+    if (el) el.style.display = (f === 'all' || f === id) ? 'block' : 'none';
+  });
+}
+function toContact() {
+  const el = document.getElementById('footer');
+  if (el) window.scrollTo({top: el.getBoundingClientRect().top + window.pageYOffset - 70, behavior:'smooth'});
+}
+function toAbout() {
+  const el = document.getElementById('about-section');
+  if (el) window.scrollTo({top: el.getBoundingClientRect().top + window.pageYOffset - 90, behavior:'smooth'});
+}
+</script>
+</body>
+</html>
