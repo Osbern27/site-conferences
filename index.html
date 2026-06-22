@@ -36,7 +36,9 @@ nav{
 .nav-logo{
   width:46px;height:46px;border-radius:50%;background:#26abd3;
   display:flex;align-items:center;justify-content:center;flex:none;font-size:22px;
+  overflow:hidden;padding:0;
 }
+.nav-logo img{width:100%;height:100%;object-fit:contain;}
 .nav-title{font-family:'Playfair Display',serif;font-weight:700;font-size:19px;color:#187894;line-height:1.05;}
 .nav-title span{color:#26abd3;}
 .nav-sub{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#9bb3bd;margin-top:2px;}
@@ -175,7 +177,7 @@ footer{background:#13343f;color:#cfe1e8;padding:56px 56px 30px;}
 <!-- NAV -->
 <nav>
   <div class="nav-brand" onclick="go('accueil')">
-    <div class="nav-logo">⛪</div>
+    <div class="nav-logo"><img src="assets/logo.png" alt="Logo Décoder les églises"></div>
     <div>
       <div class="nav-title">Décoder les églises<span> &amp; les châteaux</span></div>
       <div class="nav-sub">Laurent Ridel · Conférences</div>
@@ -204,25 +206,8 @@ footer{background:#13343f;color:#cfe1e8;padding:56px 56px 30px;}
         <button class="btn-ho" onclick="toContact()">M'inviter</button>
       </div>
     </div>
-    <!-- Skyline cathédrales SVG -->
-    <svg viewBox="0 0 1280 130" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;margin:0 -56px;width:calc(100% + 112px);" preserveAspectRatio="xMidYMax meet">
-      <g fill="#187894" opacity="0.8">
-        <rect x="560" y="12" width="160" height="118"/><polygon points="640,0 558,12 722,12"/>
-        <rect x="560" y="12" width="20" height="118"/><rect x="700" y="12" width="20" height="118"/>
-        <polygon points="570,0 560,12 580,12"/><polygon points="710,0 700,12 720,12"/>
-        <rect x="613" y="52" width="54" height="78"/>
-        <rect x="420" y="56" width="100" height="74"/><polygon points="470,38 420,56 520,56"/>
-        <rect x="448" y="38" width="12" height="20"/>
-        <rect x="760" y="50" width="110" height="80"/><polygon points="815,32 760,50 870,50"/>
-        <rect x="803" y="32" width="12" height="20"/>
-        <rect x="240" y="74" width="70" height="56"/><polygon points="275,56 240,74 310,74"/>
-        <rect x="263" y="56" width="10" height="20"/>
-        <rect x="980" y="68" width="75" height="62"/><polygon points="1017,50 980,68 1055,68"/>
-        <rect x="1007" y="50" width="10" height="20"/>
-        <rect x="120" y="88" width="46" height="42"/><polygon points="143,74 120,88 166,88"/>
-        <rect x="1152" y="82" width="48" height="48"/><polygon points="1176,68 1152,82 1200,82"/>
-      </g>
-    </svg>
+    <!-- Skyline cathédrales -->
+    <img src="assets/skyline.png" alt="Silhouette de cathédrales" style="display:block;width:calc(100% + 112px);margin:0 -56px;max-height:130px;object-fit:cover;object-position:center bottom;">
   </section>
 
   <!-- STRIP -->
