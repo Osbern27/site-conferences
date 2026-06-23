@@ -478,15 +478,9 @@ footer{background:#13343f;color:#cfe1e8;padding:56px 56px 30px;}
             <input type="text" id="nom" name="nom" required placeholder="Dupont">
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="email">E-mail *</label>
-            <input type="email" id="email" name="email" required placeholder="vous@example.fr">
-          </div>
-          <div class="form-group">
-            <label for="telephone">Téléphone</label>
-            <input type="tel" id="telephone" name="telephone" placeholder="06 00 00 00 00">
-          </div>
+        <div class="form-group">
+          <label for="email">E-mail *</label>
+          <input type="email" id="email" name="email" required placeholder="vous@example.fr">
         </div>
 
         <p style="font-size:13px;font-weight:600;color:#187894;text-transform:uppercase;letter-spacing:1.5px;margin:4px 0 14px;">Votre structure</p>
@@ -502,60 +496,58 @@ footer{background:#13343f;color:#cfe1e8;padding:56px 56px 30px;}
         </div>
 
         <p style="font-size:13px;font-weight:600;color:#187894;text-transform:uppercase;letter-spacing:1.5px;margin:4px 0 14px;">Votre projet</p>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="conference">Conférence souhaitée</label>
-            <select id="conference" name="conference">
-              <option value="">— Choisir (facultatif) —</option>
-              <optgroup label="Images &amp; symboles">
-                <option>Les églises sont-elles une bible pour les illettrés ?</option>
-                <option>35 sculptures énigmatiques dans les églises</option>
-                <option>Décoder les Vierges à l'enfant</option>
-                <option>Décoder les vitraux</option>
-                <option>Les églises sont des zoos de pierre</option>
-                <option>Qu'est-ce que ça fait dans une église !?</option>
-                <option>Bleu, blanc, rouge… La symbolique des couleurs au Moyen Âge</option>
-              </optgroup>
-              <optgroup label="Architecture">
-                <option>Viollet-le-Duc, génie ou fléau des monuments français ?</option>
-                <option>Construire une cathédrale</option>
-                <option>L'art roman n'existe pas !</option>
-                <option>Mythologie autour des bâtisseurs de cathédrale</option>
-                <option>Histoire des cathédrales de France</option>
-                <option>Aux origines de l'architecture gothique</option>
-                <option>Décoder les châteaux-forts</option>
-                <option>Comment visiter une église sans rien rater ?</option>
-              </optgroup>
-              <optgroup label="Immersion">
-                <option>Agitation dans les monastères normands</option>
-                <option>Être moine ou moniale au Moyen Âge</option>
-                <option>Les reliques : des origines au Graal</option>
-                <option>Histoire globale du monde</option>
-                <option>Décoder la Tapisserie de Bayeux</option>
-              </optgroup>
-              <optgroup label="Portraits">
-                <option>Les artistes à la fin du Moyen Âge</option>
-                <option>Le paradoxe saint Bernard de Clairvaux</option>
-                <option>Les templiers : essor, chute et renouveau</option>
-                <option>Rois et reines de France à travers l'art du portrait</option>
-                <option>Jeanne d'Arc, l'épopée incroyable</option>
-                <option>Louis XI, le dernier grand roi du Moyen Âge</option>
-                <option>La face cachée de Guillaume le Conquérant</option>
-              </optgroup>
-              <option value="autre">Autre / Je ne sais pas encore</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="date">Date ou période envisagée *</label>
-            <input type="text" id="date" name="date" required placeholder="Ex. : novembre 2026, samedi 14 mars…">
-          </div>
+        <div class="form-group">
+          <label for="conference">Conférence souhaitée</label>
+          <select id="conference" name="conference">
+            <option value="">— Choisir (facultatif) —</option>
+            <optgroup label="Images &amp; symboles">
+              <option>Les églises sont-elles une bible pour les illettrés ?</option>
+              <option>35 sculptures énigmatiques dans les églises</option>
+              <option>Décoder les Vierges à l'enfant</option>
+              <option>Décoder les vitraux</option>
+              <option>Les églises sont des zoos de pierre</option>
+              <option>Qu'est-ce que ça fait dans une église !?</option>
+              <option>Bleu, blanc, rouge… La symbolique des couleurs au Moyen Âge</option>
+            </optgroup>
+            <optgroup label="Architecture">
+              <option>Viollet-le-Duc, génie ou fléau des monuments français ?</option>
+              <option>Construire une cathédrale</option>
+              <option>L'art roman n'existe pas !</option>
+              <option>Mythologie autour des bâtisseurs de cathédrale</option>
+              <option>Histoire des cathédrales de France</option>
+              <option>Aux origines de l'architecture gothique</option>
+              <option>Décoder les châteaux-forts</option>
+              <option>Comment visiter une église sans rien rater ?</option>
+            </optgroup>
+            <optgroup label="Immersion">
+              <option>Agitation dans les monastères normands</option>
+              <option>Être moine ou moniale au Moyen Âge</option>
+              <option>Les reliques : des origines au Graal</option>
+              <option>Histoire globale du monde</option>
+              <option>Décoder la Tapisserie de Bayeux</option>
+            </optgroup>
+            <optgroup label="Portraits">
+              <option>Les artistes à la fin du Moyen Âge</option>
+              <option>Le paradoxe saint Bernard de Clairvaux</option>
+              <option>Les templiers : essor, chute et renouveau</option>
+              <option>Rois et reines de France à travers l'art du portrait</option>
+              <option>Jeanne d'Arc, l'épopée incroyable</option>
+              <option>Louis XI, le dernier grand roi du Moyen Âge</option>
+              <option>La face cachée de Guillaume le Conquérant</option>
+            </optgroup>
+            <option value="autre">Autre / Je ne sais pas encore</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="date">Date ou période envisagée *</label>
+          <input type="text" id="date" name="date" required placeholder="Ex. : novembre 2026, samedi 14 mars…">
         </div>
         <div class="form-group">
           <label for="message">Présentation de votre projet *</label>
           <textarea id="message" name="message" required placeholder="Décrivez votre association ou structure, votre public habituel (nombre de personnes, âge moyen…), le format de l'événement (soirée, journée, cycle…) et toute autre information utile."></textarea>
         </div>
         <button type="submit" class="btn-send">Envoyer ma demande →</button>
-        <p class="form-note">* Champs obligatoires &nbsp;·&nbsp; Prestation rémunérée + prise en charge des frais de déplacement et, le cas échéant, d'hébergement si le lieu est éloigné.</p>
+        <p class="form-note">* Champs obligatoires &nbsp;·&nbsp; <strong>Prestation rémunérée + prise en charge des frais de déplacement et, le cas échéant, d'hébergement si le lieu est éloigné.</strong></p>
       </form>
     </div>
     <div class="modal-success" id="modal-success">
