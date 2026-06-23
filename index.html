@@ -152,6 +152,31 @@ nav{
 .conf-cta h2{font-family:'Playfair Display',serif;font-weight:700;font-size:32px;margin:0 0 12px;}
 .conf-cta p{font-size:17px;color:#dff3fa;max-width:540px;margin:0 auto 28px;font-weight:300;}
 
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:5000;background:rgba(10,30,38,.6);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal{background:#fff;border-radius:12px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.25);position:relative;}
+.modal-hd{background:#187894;color:#fff;padding:32px 36px 28px;border-radius:12px 12px 0 0;}
+.modal-hd h2{font-family:'Playfair Display',serif;font-weight:700;font-size:26px;margin:0 0 6px;}
+.modal-hd p{font-size:15px;color:#cdeefb;margin:0;font-weight:300;}
+.modal-close{position:absolute;top:16px;right:20px;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:20px;line-height:1;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.modal-close:hover{background:rgba(255,255,255,.3);}
+.modal-body{padding:32px 36px 36px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+.form-group label{font-size:13px;font-weight:600;color:#516068;letter-spacing:.4px;text-transform:uppercase;}
+.form-group input,.form-group select,.form-group textarea{border:1.5px solid #cfe4ec;border-radius:6px;padding:11px 14px;font-family:'Jost',sans-serif;font-size:15px;color:#2c3c42;outline:none;transition:border-color .2s;background:#fff;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#26abd3;}
+.form-group textarea{resize:vertical;min-height:110px;}
+.form-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23187894' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;}
+.btn-send{width:100%;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:16px;font-weight:600;color:#fff;background:#ff7a00;padding:15px;border-radius:6px;transition:background .2s;margin-top:6px;}
+.btn-send:hover{background:#e06d00;}
+.form-note{font-size:12.5px;color:#8a9aa1;text-align:center;margin-top:14px;}
+.modal-success{display:none;padding:48px 36px;text-align:center;}
+.modal-success .ok-icon{font-size:48px;margin-bottom:16px;}
+.modal-success h3{font-family:'Playfair Display',serif;font-size:24px;color:#187894;margin:0 0 10px;}
+.modal-success p{font-size:16px;color:#516068;font-weight:300;margin:0 0 24px;}
+
 /* FOOTER */
 footer{background:#13343f;color:#cfe1e8;padding:56px 56px 30px;}
 .ft-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;max-width:1100px;margin:0 auto;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.1);}
@@ -429,6 +454,119 @@ footer{background:#13343f;color:#cfe1e8;padding:56px 56px 30px;}
 
 </div><!-- /conferences -->
 
+<!-- MODAL CONTACT -->
+<div class="modal-overlay" id="modal-contact" onclick="closeModalOnOverlay(event)">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-hd">
+      <button class="modal-close" onclick="closeModal()" aria-label="Fermer">✕</button>
+      <h2 id="modal-title">Inviter Laurent Ridel</h2>
+      <p>Remplissez ce formulaire, je vous réponds personnellement sous 48&nbsp;h.</p>
+    </div>
+    <div class="modal-body" id="modal-form-body">
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+        <input type="hidden" name="form-name" value="contact">
+        <p style="display:none;"><label>Ne pas remplir : <input name="bot-field"></label></p>
+
+        <p style="font-size:13px;font-weight:600;color:#187894;text-transform:uppercase;letter-spacing:1.5px;margin:0 0 14px;">Qui êtes-vous ?</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prenom">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" required placeholder="Marie">
+          </div>
+          <div class="form-group">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" name="nom" required placeholder="Dupont">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">E-mail *</label>
+            <input type="email" id="email" name="email" required placeholder="vous@example.fr">
+          </div>
+          <div class="form-group">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone" placeholder="06 00 00 00 00">
+          </div>
+        </div>
+
+        <p style="font-size:13px;font-weight:600;color:#187894;text-transform:uppercase;letter-spacing:1.5px;margin:4px 0 14px;">Votre structure</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="organisation">Organisation / Association *</label>
+            <input type="text" id="organisation" name="organisation" required placeholder="Université inter-âges de…">
+          </div>
+          <div class="form-group">
+            <label for="ville">Ville ou région *</label>
+            <input type="text" id="ville" name="ville" required placeholder="Caen, Normandie…">
+          </div>
+        </div>
+
+        <p style="font-size:13px;font-weight:600;color:#187894;text-transform:uppercase;letter-spacing:1.5px;margin:4px 0 14px;">Votre projet</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="conference">Conférence souhaitée</label>
+            <select id="conference" name="conference">
+              <option value="">— Choisir (facultatif) —</option>
+              <optgroup label="Images &amp; symboles">
+                <option>Les églises sont-elles une bible pour les illettrés ?</option>
+                <option>35 sculptures énigmatiques dans les églises</option>
+                <option>Décoder les Vierges à l'enfant</option>
+                <option>Décoder les vitraux</option>
+                <option>Les églises sont des zoos de pierre</option>
+                <option>Qu'est-ce que ça fait dans une église !?</option>
+                <option>Bleu, blanc, rouge… La symbolique des couleurs au Moyen Âge</option>
+              </optgroup>
+              <optgroup label="Architecture">
+                <option>Viollet-le-Duc, génie ou fléau des monuments français ?</option>
+                <option>Construire une cathédrale</option>
+                <option>L'art roman n'existe pas !</option>
+                <option>Mythologie autour des bâtisseurs de cathédrale</option>
+                <option>Histoire des cathédrales de France</option>
+                <option>Aux origines de l'architecture gothique</option>
+                <option>Décoder les châteaux-forts</option>
+                <option>Comment visiter une église sans rien rater ?</option>
+              </optgroup>
+              <optgroup label="Immersion">
+                <option>Agitation dans les monastères normands</option>
+                <option>Être moine ou moniale au Moyen Âge</option>
+                <option>Les reliques : des origines au Graal</option>
+                <option>Histoire globale du monde</option>
+                <option>Décoder la Tapisserie de Bayeux</option>
+              </optgroup>
+              <optgroup label="Portraits">
+                <option>Les artistes à la fin du Moyen Âge</option>
+                <option>Le paradoxe saint Bernard de Clairvaux</option>
+                <option>Les templiers : essor, chute et renouveau</option>
+                <option>Rois et reines de France à travers l'art du portrait</option>
+                <option>Jeanne d'Arc, l'épopée incroyable</option>
+                <option>Louis XI, le dernier grand roi du Moyen Âge</option>
+                <option>La face cachée de Guillaume le Conquérant</option>
+              </optgroup>
+              <option value="autre">Autre / Je ne sais pas encore</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="date">Date ou période envisagée *</label>
+            <input type="text" id="date" name="date" required placeholder="Ex. : novembre 2026, samedi 14 mars…">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message">Présentation de votre projet *</label>
+          <textarea id="message" name="message" required placeholder="Décrivez votre association ou structure, votre public habituel (nombre de personnes, âge moyen…), le format de l'événement (soirée, journée, cycle…) et toute autre information utile."></textarea>
+        </div>
+        <button type="submit" class="btn-send">Envoyer ma demande →</button>
+        <p class="form-note">* Champs obligatoires &nbsp;·&nbsp; Prestation rémunérée + prise en charge des frais de déplacement et, le cas échéant, d'hébergement si le lieu est éloigné.</p>
+      </form>
+    </div>
+    <div class="modal-success" id="modal-success">
+      <div class="ok-icon">✉️</div>
+      <h3>Message envoyé !</h3>
+      <p>Merci pour votre demande. Laurent vous répondra personnellement sous 48&nbsp;h.</p>
+      <button class="btn-send" style="max-width:200px;margin:0 auto;display:block;" onclick="closeModal()">Fermer</button>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer id="footer">
   <div class="ft-grid">
@@ -440,7 +578,7 @@ footer{background:#13343f;color:#cfe1e8;padding:56px 56px 30px;}
     <div>
       <div class="ft-col-t">Me contacter</div>
       <div class="ft-contact">
-        <a href="mailto:laurent-ridel@decoder-eglises-chateaux.fr">laurent-ridel@decoder-eglises-chateaux.fr</a><br>
+        <button onclick="openModal()" style="background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:15px;color:#d4e6ed;padding:0;text-decoration:underline;text-underline-offset:3px;">Formulaire de contact</button><br>
         <a href="tel:+33622220554">06&nbsp;22&nbsp;22&nbsp;05&nbsp;54</a><br>
         72 avenue du 6 juin — 14100 Lisieux
       </div>
@@ -472,13 +610,38 @@ function filter(f) {
     if (el) el.style.display = (f === 'all' || f === id) ? 'block' : 'none';
   });
 }
-function toContact() {
-  const el = document.getElementById('footer');
-  if (el) window.scrollTo({top: el.getBoundingClientRect().top + window.pageYOffset - 70, behavior:'smooth'});
-}
 function toAbout() {
   const el = document.getElementById('about-section');
   if (el) window.scrollTo({top: el.getBoundingClientRect().top + window.pageYOffset - 90, behavior:'smooth'});
+}
+function toContact() { openModal(); }
+function openModal() {
+  document.getElementById('modal-contact').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal-contact').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOnOverlay(e) {
+  if (e.target === document.getElementById('modal-contact')) closeModal();
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  fetch('/', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: new URLSearchParams(new FormData(form)).toString()
+  }).then(() => {
+    document.getElementById('modal-form-body').style.display = 'none';
+    document.getElementById('modal-success').style.display = 'block';
+  }).catch(() => {
+    alert('Une erreur est survenue. Merci de réessayer ou de me contacter par téléphone.');
+  });
 }
 </script>
 </body>
